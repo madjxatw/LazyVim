@@ -1,6 +1,7 @@
 if lazyvim_docs then
   -- LSP Server to use for Python.
   -- Set to "basedpyright" to use basedpyright instead of pyright.
+  -- Set to "ty" to use ty instead of pyright.
   vim.g.lazyvim_python_lsp = "pyright"
   -- Set to "ruff_lsp" to use the old LSP implementation version.
   vim.g.lazyvim_python_ruff = "ruff"
@@ -69,7 +70,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      local servers = { "pyright", "basedpyright", "ruff", "ruff_lsp", ruff, lsp }
+      local servers = { "pyright", "basedpyright", "ty", "ruff", "ruff_lsp", ruff, lsp }
       for _, server in ipairs(servers) do
         opts.servers[server] = opts.servers[server] or {}
         opts.servers[server].enabled = server == lsp or server == ruff
